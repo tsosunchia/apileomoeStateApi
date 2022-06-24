@@ -12,9 +12,8 @@ app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
 
 
-def request_parse(req_data):
-    '''解析请求数据并以json形式返回'''
-
+def request_parse(req_data: request) -> dict:
+    """解析请求数据并以json形式返回"""
     if req_data.method == 'POST':
         data = req_data.json
     elif req_data.method == 'GET':
