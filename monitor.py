@@ -1,8 +1,8 @@
 import json
+import logging
 
 import psutil
 import pymysql
-import logging
 
 key = json.load(open('priv/key.json'))
 threshold = json.load(open('priv/threshold.json'))
@@ -23,7 +23,7 @@ def queryDB(sqls: list) -> list:
         for sql in sqls:
             logging.debug(f"sql:{sql}")
             cursor.execute(sql)
-            res = cursor.fetchall()
+            res.append(cursor.fetchall())
             logging.debug(f"res:{res}")
     except pymysql.err.ProgrammingError as errMsg:
         print(errMsg)
