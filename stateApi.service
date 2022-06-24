@@ -1,0 +1,15 @@
+[Unit]
+Description=Gunicorn instance to serve stateApi
+After=network.target
+
+[Service]
+User=root
+Group=www-data
+StandardOutput=append:/var/log/stateApi_access.log
+StandardError=append:/var/log/stateApi_error.log
+WorkingDirectory=/var/www/stateApi
+Environment="PATH=/var/www/stateApi"
+ExecStart=/usr/local/bin/gunicorn --workers 3 -b 0.0.0.0:11451 app:app
+
+[Install]
+WantedBy=multi-user.target
