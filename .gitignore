@@ -1,0 +1,8 @@
+/priv/*
+!/priv/key.json
+!/priv/threshold.json
+__pycache__
+.idea
+.DS_Store
+.vscode
+/test/
