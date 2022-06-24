@@ -33,7 +33,7 @@ def get_data():
         return 'query is not supported', 400
     if queryItem == 'all':
         _ = monitor.monitor()
-        ret = {'status': f"{_[0]}", 'msg': _[1]}
+        ret = {'status': _[0], 'msg': _[1]}
         return Response(response=json.dumps(ret), mimetype='application/json')
     if queryItem == 'cpu':
         return Response(response=json.dumps(monitor.backendIf(cpu=True)), mimetype='application/json')
