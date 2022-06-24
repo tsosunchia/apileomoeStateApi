@@ -23,7 +23,7 @@ def queryDB(sqls: list) -> list:
         for sql in sqls:
             logging.debug(f"sql:{sql}")
             cursor.execute(sql)
-            res.append(cursor.fetchall())
+            res.append(cursor.fetchall()[0])
             logging.debug(f"res:{res}")
     except pymysql.err.ProgrammingError as errMsg:
         print(errMsg)
