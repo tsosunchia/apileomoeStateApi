@@ -10,7 +10,9 @@ logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(leve
 # 查询今日新增用户
 sqlUser = "select count(*) from users where date_format(create_time,'%Y-%m-%d') = date_format(now(),'%Y-%m-%d')"
 # 查询过去1小时cache表增加行数
-sqlRow = "select count(*) from cache where updatetime > (now() - interval 1 hour)"
+sqlRow = """select
+(select count(*) from cache where updatetime > (now() - interval 1 hour)) +
+(select count(*) from cache_v6 where updatetime > (now() - interval 1 hour))"""
 query_list = ['cpu', 'mem', 'user', 'row', 'all']
 
 
